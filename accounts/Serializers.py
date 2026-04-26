@@ -25,12 +25,22 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+            data = super().validate(attrs)
+
+        # ✅ Add extra response data
+            data['username'] = self.user.username
+            data['role'] = self.user.role
+
+            return data
+
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
 
-        # 👇 ADD CUSTOM CLAIMS TO JWT
+        # Optional (JWT payload)
         token['username'] = user.username
         token['role'] = user.role
 
         return token
+    
