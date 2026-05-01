@@ -57,8 +57,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -70,6 +70,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'lms_backend.urls'
 CORS_ALLOWED_ORIGINS = [
+    "https://lms-frontend-ten-snowy.vercel.app",
+]
+CSRF_TRUSTED_ORIGINS = [
     "https://lms-frontend-ten-snowy.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
